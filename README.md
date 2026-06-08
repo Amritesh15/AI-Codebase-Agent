@@ -84,7 +84,7 @@ Backend/
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/AI-Codebase-Agent.git
+git clone https://github.com/Amritesh15/AI-Codebase-Agent.git
 cd AI-Codebase-Agent/Backend
 ```
 
