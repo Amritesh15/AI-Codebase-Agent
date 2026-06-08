@@ -1,17 +1,31 @@
-AI Codebase Agent
+# AI Codebase Agent
 
-A multi-agent AI platform that transforms GitHub repositories into searchable knowledge bases using Retrieval-Augmented Generation (RAG), semantic code embeddings, and self-hosted LLMs.
+AI Codebase Agent is a multi-agent RAG platform that transforms GitHub repositories into searchable knowledge bases. It enables developers to explore, understand, and query large codebases using semantic search, vector embeddings, and self-hosted LLMs.
 
-🚀 Features
-Clone and analyze any public GitHub repository
-Parse and chunk source code automatically
-Generate semantic code embeddings
-Store and retrieve code context using ChromaDB
-Natural-language codebase search
-Repository-aware question answering
-Multi-agent architecture for ingestion, retrieval, and reasoning
-Self-hosted LLM inference using Ollama
-🏗️ Architecture
+## Features
+
+- GitHub repository ingestion and analysis
+- Automatic code parsing and chunking
+- Semantic code embeddings generation
+- Vector search using ChromaDB
+- Natural language codebase search
+- Repository-aware question answering
+- Multi-agent architecture for ingestion, retrieval, and reasoning
+- Self-hosted LLM inference using Ollama
+
+## Tech Stack
+
+- LangGraph
+- ChromaDB
+- Ollama
+- FastAPI
+- Sentence Transformers
+- GitPython
+- Python
+
+## Architecture
+
+```text
 GitHub Repository
         │
         ▼
@@ -40,15 +54,11 @@ GitHub Repository
         │
         ▼
      Answer
-🛠️ Tech Stack
-LangGraph
-ChromaDB
-Ollama
-FastAPI
-Sentence Transformers
-GitPython
-Python
-📂 Project Structure
+```
+
+## Project Structure
+
+```text
 Backend/
 │
 ├── app/
@@ -67,79 +77,129 @@ Backend/
 ├── chroma_db/
 ├── tests/
 └── main.py
-⚙️ Installation
-Clone Repository
-git clone https://github.com/yourusername/AI-Codebase-Agent.git
+```
+
+## Getting Started
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/<your-username>/AI-Codebase-Agent.git
 cd AI-Codebase-Agent/Backend
-Create Virtual Environment
+```
+
+### Create a Virtual Environment
+
+```bash
 python -m venv venv
+```
 
-Activate:
+Activate the environment:
 
-# Windows
+**Windows**
+
+```bash
 venv\Scripts\activate
+```
 
-# Linux/Mac
+**Linux / macOS**
+
+```bash
 source venv/bin/activate
-Install Dependencies
+```
+
+### Install Dependencies
+
+```bash
 pip install -r requirements.txt
-📥 Repository Ingestion
+```
 
-Provide a GitHub repository URL:
+## Usage
 
-repo_url = "https://github.com/langchain-ai/langchain"
+### Ingest a Repository
 
-clone_repository(repo_url)
+```python
+from app.agents.ingestion_agent import clone_repository
 
-The system will:
+clone_repository(
+    "https://github.com/langchain-ai/langchain"
+)
+```
 
-Clone the repository
-Parse source files
-Create code chunks
-Generate embeddings
-Store vectors in ChromaDB
-🔍 Semantic Search
+### Generate Embeddings
+
+```python
+from app.agents.parsing_agent import parse_repository
+from app.agents.embedding_agent import embed_chunks
+
+chunks = parse_repository(
+    "repos/langchain"
+)
+
+embedded_chunks = embed_chunks(chunks)
+```
+
+### Store in ChromaDB
+
+```python
+from app.agents.vector_store_agent import store_chunks
+
+store_chunks(embedded_chunks)
+```
+
+### Search the Codebase
+
+```python
+from app.agents.vector_store_agent import search_chunks
+
 results = search_chunks(
     "How does AgentExecutor work?"
 )
 
-Example output:
+print(results)
+```
 
-agent_executor.py
-agents.py
-base_agent.py
-🤖 Repository Question Answering
+### Ask Questions About the Repository
+
+```python
+from app.agents.qa_agent import answer_question
+
 response = answer_question(
     "Explain how AgentExecutor works."
 )
 
 print(response)
+```
 
-The system retrieves relevant code chunks and generates grounded responses using the repository context.
+## Example Queries
 
-🎯 Use Cases
-Codebase onboarding
-Repository exploration
-Developer productivity
-Architecture understanding
-Code search
-Documentation generation
-AI-powered developer assistants
-📈 Future Enhancements
-Architecture visualization agent
-Repository knowledge graph generation
-Multi-repository support
-Code dependency analysis
-Automated documentation generation
-PR review agent
-Agentic workflow orchestration with LangGraph
-🌟 Key Highlights
-Multi-Agent AI Architecture
-Retrieval-Augmented Generation (RAG)
-Self-Hosted LLM Infrastructure
-Semantic Code Search
-Repository-Aware Question Answering
-Scalable Vector Database Architecture
-📄 License
+- How does AgentExecutor work?
+- Explain the prompt template architecture.
+- How are chat models implemented?
+- Which files handle tool execution?
+- Describe the repository architecture.
+- Where is memory management implemented?
+
+## Future Enhancements
+
+- Architecture visualization agent
+- Repository dependency graph generation
+- Multi-repository support
+- Automated documentation generation
+- Pull request review agent
+- Knowledge graph integration
+- Advanced LangGraph orchestration
+
+## Resume Highlights
+
+- Built a multi-agent AI platform using LangGraph, ChromaDB, and self-hosted LLMs for repository intelligence and code understanding.
+- Engineered an end-to-end RAG pipeline that ingests GitHub repositories, generates semantic embeddings, and enables natural-language code search.
+- Developed repository-aware AI agents capable of answering implementation and architecture questions using contextual source-code retrieval.
+
+## License
 
 MIT License
+
+---
+
+Built to help developers understand large codebases faster using AI.
