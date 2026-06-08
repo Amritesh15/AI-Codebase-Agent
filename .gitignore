@@ -30,3 +30,6 @@ Thumbs.db
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Chroma vector database (local persistence)
+chroma_db/
